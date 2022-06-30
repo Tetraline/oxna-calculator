@@ -6,14 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <link rel="stylesheet" href="./main.css">
 </head>
 
 <body>
 
     <main class="calculator-wrapper">
-        <section class="screen" </section>
-            <section class="primary-buttons"></section>
-            <div class="primary-buttons__main-array">
+        <section class="screen">
+            <div class="screen__upper"></div>
+            <div class="screen__lower"></div>
+        </section>
+        <section class="buttons">
+            <div class="buttons__blocker-for-array-3">
+                <p>EXIT</p>
+            </div>
+            <div class="buttons__array-1">
                 <button value=7>7</button>
                 <button value=8>8</button>
                 <button value=9>9</button>
@@ -24,25 +31,27 @@
                 <button value=2>2</button>
                 <button value=3>3</button>
                 <button value=0>0</button>
-                <button value=.>.</button>
-                <button value="DEL">⌫</button>
-
-            </div>
-            <div class="primary-buttons__side-array">
-                <button value="/">/</button>
-                <button value="*">X</button>
-                <button value="-">/</button>
-                <button value="+">/</button>
-                <button value="=">/</button>
+                <button value="."">.</button>
+            <button value=" DEL">⌫</button>
             </div>
 
-            <section class="secondary-buttons">
+            <div class="buttons__array-2">
+                <button value="/">÷</button>
+                <button value="*">×</button>
+                <button value="-">−</button>
+                <button value="+">+</button>
+                <button value="=">=</button>
+            </div>
+
+            <div class="buttons__array-3">
                 <button value="π">π</button>
                 <button value="e">e</button>
                 <button value="(">(</button>
                 <button value=")">)</button>
-            </section>
+            </div>
+        </section>
     </main>
+    <script src="main.js"></script>
 </body>
 
 </html>

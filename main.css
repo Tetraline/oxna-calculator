@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.buttons {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 73fr 21fr 6fr;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+.buttons__array-1 {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  background-color: #444444;
+}
+.buttons__array-1 > button {
+  color: #ffffff;
+  font-size: 55px;
+  font-size: 3.4375rem;
+}
+
+.buttons__array-2 {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  background-color: #636363;
+}
+.buttons__array-2 > button {
+  color: #ffffff;
+  font-size: 45px;
+  font-size: 2.8125rem;
+}
+
+.buttons__array-3 {
+  height: 100%;
+  width: 73%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  position: fixed;
+  right: -67%;
+  transition: 0.8s;
+  z-index: 2;
+  background-color: #1fe9b5;
+}
+.buttons__array-3 > button {
+  color: #000000;
+  font-size: 55px;
+  font-size: 3.4375rem;
+}
+
+.buttons__blocker-for-array-3 {
+  position: fixed;
+  right: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.9;
+  z-index: 1;
+  transition: 0.8s;
+}
+.buttons__blocker-for-array-3 > p {
+  color: white;
+  font-size: 2rem;
+  margin-top: 19%;
+  margin-left: 4%;
+}
+
+.buttons__array-3--open,
+.buttons__blocker-for-array-3--open {
+  right: 0%;
+}
+
+.calculator-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 32fr 68fr;
+}

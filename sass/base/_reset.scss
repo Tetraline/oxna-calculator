@@ -1,0 +1,12 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  // Use this to debug overflowing elements
+  //  outline: solid 1px red;
+  scroll-behavior: smooth;
+
+  // This contributes to preventing scrolling
+  // on mobile.
+  overflow: hidden;
+}

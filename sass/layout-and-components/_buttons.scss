@@ -1,0 +1,81 @@
+@use "../abstracts/variables" as *;
+
+.buttons {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 73fr 21fr 6fr;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+.buttons__array-1 {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  background-color: $array-1-background;
+  > button {
+    color: $array-1-text-color;
+    font-size: 55px;
+    font-size: 3.4375rem;
+  }
+}
+
+.buttons__array-2 {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  background-color: $array-2-background;
+  > button {
+    color: $array-2-text-color;
+    font-size: 45px;
+    font-size: 2.8125rem;
+  }
+}
+
+.buttons__array-3 {
+  height: 100%;
+  width: 73%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  position: fixed;
+  right: -67%;
+  transition: 0.8s;
+  z-index: 2;
+  > button {
+    color: $array-3-text-color;
+    font-size: 55px;
+    font-size: 3.4375rem;
+  }
+  background-color: $array-3-background;
+}
+
+.buttons__blocker-for-array-3 {
+  position: fixed;
+  right: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.9;
+  z-index: 1;
+  transition: 0.8s;
+  > p {
+    color: white;
+    font-size: 2rem;
+    margin-top: 19%;
+    margin-left: 4%;
+  }
+}
+
+.buttons__array-3--open,
+.buttons__blocker-for-array-3--open {
+  right: 0%;
+}
