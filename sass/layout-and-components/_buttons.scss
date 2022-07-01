@@ -5,6 +5,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 73fr 21fr 6fr;
+  position: relative;
 }
 
 button {
@@ -24,6 +25,9 @@ button {
     //    font-size: 55px;
     //    font-size: 3.4375rem;
     font-size: 9vw;
+    @media only screen and (min-width: 768px) {
+      font-size: 69px;
+    }
   }
 }
 
@@ -45,9 +49,14 @@ button {
   height: 100%;
   width: 73%;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 13fr 67fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  position: fixed;
+  //grid-template-areas:
+  //". 1"
+  //". 2"
+  //". 3"
+  //". 4";
+  position: absolute;
   right: -67%;
   transition: 0.8s;
   z-index: 2;
@@ -55,19 +64,21 @@ button {
     color: $array-3-text-color;
     font-size: 55px;
     font-size: 3.4375rem;
+    grid-column-start: 2;
   }
   background-color: $array-3-background;
 }
 
 .buttons__blocker-for-array-3 {
   position: fixed;
-  right: 100%;
+  right: -100%;
   width: 100%;
   height: 100%;
   background-color: black;
   opacity: 0.9;
   z-index: 1;
   transition: 0.8s;
+  position: absolute;
   > p {
     color: white;
     font-size: 2rem;
