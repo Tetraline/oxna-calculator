@@ -38,6 +38,11 @@ const handleButtonPress = (event) => {
       // Parse string --> Array
       let calculationArray = parse(lowerScreen.innerText);
       // Show the user how we fixed "1++2" into "1+0+2", for example.
+      if (!calculationArray) {
+        upperScreen.innerText = lowerScreen.innerText;
+        lowerScreen.innerText = "⚠";
+        break;
+      }
       lowerScreen.innerText = calculationArray.join("");
       // Calculate the result
       let result = calculate(calculationArray);

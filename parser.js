@@ -43,9 +43,8 @@ const parse = (string) => {
     string = digitParse[1];
     charParse = char(string);
     if (digitParse[1] === charParse[1]) {
-      console.log("parse: FATAL ERROR: Probably an illegal input.");
-      console.log(
-        "parse: Inputs must end in = and only have permitted characters"
+      console.error(
+        "parse: FATAL: Probably an illegal input. Inputs must end in = and only have permitted characters."
       );
       return 0;
     }
@@ -53,8 +52,10 @@ const parse = (string) => {
     string = charParse[1];
   }
   // If someone chains operators
-  // e.g. 1++2
-  // Make the calculation 1+0+2
+  // e.g. "1++2"
+  // Make the calculation "1+0+2"
+  // Makes an effort to catch "2**2" cases
+  // and make them "2*1*2"
   calculation.forEach((element, i) => {
     if (element == "") {
       if (calculation[i - 1] == "*") {
