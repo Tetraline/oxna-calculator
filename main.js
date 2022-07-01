@@ -24,20 +24,29 @@ const parseString = (string) => {
 // and takes appropriate action
 const handleButtonPress = (event) => {
   const value = event.target.value;
-  console.log(value);
-  const inputScreen = document.querySelector(".screen__upper");
-  const outputScreen = document.querySelector(".screen__lower");
+  const upperScreen = document.querySelector(".screen__upper");
+  const lowerScreen = document.querySelector(".screen__lower");
 
   switch (value) {
     case "DEL":
-      inputScreen.innerText = inputScreen.innerText.slice(0, -1);
+      lowerScreen.innerText = lowerScreen.innerText.slice(0, -1);
       break;
 
     case "=":
-      outputScreen.innerText = parseString(inputScreen.innerText);
+      // Put the equals on the screen as normal
+      lowerScreen.innerText += "=";
+      // Parse string --> Array
+      let calculationArray = parse(lowerScreen.innerText);
+      // Show the user how we fixed "1++2" into "1+0+2", for example.
+      lowerScreen.innerText = calculationArray.join("");
+      // Calculate the result
+      let result = calculate(calculationArray);
+      // Display the result and shift the input to the top screen
+      upperScreen.innerText = lowerScreen.innerText;
+      lowerScreen.innerText = result;
       break;
     default:
-      inputScreen.innerText += value;
+      lowerScreen.innerText += value;
       break;
   }
 };
