@@ -6,6 +6,9 @@
   display: grid;
   grid-template-columns: 73fr 21fr 6fr;
   position: relative;
+  @media only screen and (min-width: 1400px) {
+    grid-template-columns: 73fr 21fr 73fr;
+  }
 }
 
 button {
@@ -67,6 +70,11 @@ button {
     grid-column-start: 2;
   }
   background-color: $array-3-background;
+  @media only screen and (min-width: 1400px) {
+    right: 0%;
+    width: 43.7125748%;
+    grid-template-columns: 0fr 1fr;
+  }
 }
 
 .buttons__blocker-for-array-3 {
@@ -84,6 +92,9 @@ button {
     font-size: 2rem;
     margin-top: 19%;
     margin-left: 4%;
+  }
+  @media only screen and (min-width: 1400px) {
+    display: none;
   }
 }
 

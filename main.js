@@ -31,18 +31,25 @@ const handleButtonPress = (event) => {
     case "DEL":
       lowerScreen.innerText = lowerScreen.innerText.slice(0, -1);
       break;
-
+    case "AC":
+      lowerScreen.innerText = "";
+      upperScreen.innerText = "";
+      break;
+    case "square":
+      lowerScreen.innerText = `${lowerScreen.innerText}*${lowerScreen.innerText}`;
+    // no break since we want case "=" to immediately execute after this
     case "=":
       // Put the equals on the screen as normal
       lowerScreen.innerText += "=";
       // Parse string --> Array
       let calculationArray = parse(lowerScreen.innerText);
-      // Show the user how we fixed "1++2" into "1+0+2", for example.
+      // If parsing produced an error, show an error symbol on screen
       if (!calculationArray) {
         upperScreen.innerText = lowerScreen.innerText;
         lowerScreen.innerText = "⚠";
         break;
       }
+      // Show the user how we fixed "1++2" into "1+0+2", for example.
       lowerScreen.innerText = calculationArray.join("");
       // Calculate the result
       let result = calculate(calculationArray);
@@ -55,9 +62,9 @@ const handleButtonPress = (event) => {
       break;
   }
 };
-
+// // // Add click event to buttons in arrays
 const buttons = document.querySelectorAll(
-  ".buttons__array-1>button, .buttons__array-2>button, .buttons__array-3>button"
+  ".buttons__array-1>button, .buttons__array-2>button, .buttons__array-3>button, .screen__clear"
 );
 buttons.forEach((button) => {
   button.addEventListener("click", handleButtonPress);
