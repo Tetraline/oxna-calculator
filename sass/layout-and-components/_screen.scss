@@ -1,0 +1,8 @@
+.screen {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4fr 6fr;
+  align-items: center;
+  margin: 20px;
+  font-size: 2rem;
+}

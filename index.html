@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
     <title>Calculator</title>
     <link rel="stylesheet" href="./main.css">
 </head>
 
-<body>
 
+<body onload="setTimeout(function() { window.scrollTo(0, 1) }, 100);">
     <main class="calculator-wrapper">
         <section class="screen">
             <div class="screen__upper"></div>
@@ -21,18 +23,18 @@
                 <p>EXIT</p>
             </div>
             <div class="buttons__array-1">
-                <button value=7>7</button>
-                <button value=8>8</button>
-                <button value=9>9</button>
-                <button value=4>4</button>
-                <button value=5>5</button>
-                <button value=6>6</button>
-                <button value=1>1</button>
-                <button value=2>2</button>
-                <button value=3>3</button>
-                <button value=0>0</button>
-                <button value="."">.</button>
-            <button value=" DEL">⌫</button>
+                <button value="7">7</button>
+                <button value="8">8</button>
+                <button value="9">9</button>
+                <button value="4">4</button>
+                <button value="5">5</button>
+                <button value="6">6</button>
+                <button value="1">1</button>
+                <button value="2">2</button>
+                <button value="3">3</button>
+                <button value="0">0</button>
+                <button value=".">.</button>
+                <button value="DEL">⌫</button>
             </div>
 
             <div class="buttons__array-2">
@@ -52,6 +54,7 @@
         </section>
     </main>
     <script src="main.js"></script>
+    <script src="parser.js"></script>
 </body>
 
 </html>
