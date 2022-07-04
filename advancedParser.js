@@ -1,17 +1,11 @@
-// This parser recoginizes
-// 1. Addition "+"
-// 2. Multiplication "*"
-// 3. Negative numbers "-1"
-// 4. Bracketed expressions "(2*3)"
+// This parser recoginizes +, -, *, /, negative numbers, brackets.
 
-// Subtraction is not supported. Instead, add a negative number.
-// e.g. "1+-1"
-
-// Division is not supported. Instead, multiply by 1/x (the reciprocal)
-// e.g. 75/3 becomes 75 * (1/3)
-
+/**
+ * Try to parse a single digit, or decimal point, from the front of a string
+ * @param {string} string
+ * @return {array} The digit, the rest of the string.
+ */
 const digit = (string) => {
-  //const pattern = /\d|\.|e|π/;
   const pattern = /\d|\./;
   if (pattern.test(string[0])) {
     return [string[0], string.substring(1)];
@@ -20,25 +14,11 @@ const digit = (string) => {
   }
 };
 
-//const char = (string) => {
-//  const pattern = /[/*\-+=]/;
-//  if (pattern.test(string[0])) {
-//    return [string[0], string.substring(1)];
-//  } else {
-//    return [, string];
-//  }
-//};
-const char = (char, string = "") => {
-  if (string.length == 0) {
-    return [,];
-  }
-  if (string[0] == char) {
-    return [string[0], string.substring(1)];
-  } else {
-    return [, string];
-  }
-};
-
+/**
+ * Parse as many digits as possible
+ * @param {string} string
+ * @returns {array} The digits, the rest of the string.
+ */
 const someDigit = (string) => {
   let output = "";
   digitParse = digit(string);
@@ -50,6 +30,14 @@ const someDigit = (string) => {
   return [output, string];
 };
 
+/**
+ * Parses an entire number by
+ * 1. Check if the number is negative
+ * 2. Parse as many digits as possible until a non-digit
+ *    character is found
+ * @param {string} string
+ * @returns {array} The number, the rest of the string
+ */
 const num = (string) => {
   if (string[0] == "-") {
     string = string.substring(1);
@@ -61,6 +49,29 @@ const num = (string) => {
   }
 };
 
+/**
+ * Parse a given character from the front of the string, if possible.
+ * @param {string} char The character to be found
+ * @param {string} string The string to be parsed
+ * @returns {array} The character if found, the rest of the string
+ */
+const char = (char, string = "") => {
+  if (string.length == 0) {
+    return [,];
+  }
+  if (string[0] == char) {
+    return [string[0], string.substring(1)];
+  } else {
+    return [, string];
+  }
+};
+
+/**
+ * Detects and evaluates expressions inside brackets,
+ * otherwise parses a number if no brackets seen
+ * @param {string} string
+ * @returns {array} The evaluated bracket | The parsed number, the rest of the string
+ */
 const factor = (string) => {
   if (string[0] == "(") {
     let output;
@@ -75,27 +86,41 @@ const factor = (string) => {
   }
 };
 
+/**
+ * Detects and evaluates division and multiplication operations,
+ * otherwise passes string to factor() if none seen.
+ *
+ * @param {string} string
+ * @returns {array} The evaluated operation | factor(string), the rest of the string
+ */
 const term = (string) => {
   let x;
   let y;
   let output;
   output = factor(string);
   x = output[0];
-  output = char("*", output[1]);
-  if (output[0]) {
-    output = term(output[1]);
-    y = output[0];
-    return [+x * +y, output[1]];
-  }
   output = char("/", output[1]);
   if (output[0]) {
     output = term(output[1]);
     y = output[0];
     return [+x / +y, output[1]];
   }
+  output = char("*", output[1]);
+  if (output[0]) {
+    output = term(output[1]);
+    y = output[0];
+    return [+x * +y, output[1]];
+  }
   return factor(string);
 };
 
+/**
+ * Detects and evaluates addition operations,
+ * otherwise passes string to term() if none seen.
+ *
+ * @param {string} string
+ * @returns {array} The evaluated operation | term(string), the rest of the string
+ */
 const expression = (string) => {
   let x;
   let y;
@@ -112,6 +137,14 @@ const expression = (string) => {
   }
 };
 
+/**
+ * Ensure input is clean.
+ * 1. The parsing functions do not tolerate spaces in the string
+ * 2. The parser cannot subtract, so subtraction operations need to
+ *  be made addition of a negative number
+ * @param {string} string  A string to be parsed
+ * @returns {string} A formatted string
+ */
 const parse = (string) => {
   // Remove spaces
   string = string.replace(/\s/g, "");
@@ -122,16 +155,12 @@ const parse = (string) => {
     if (
       charArray[i] == "-" &&
       charArray[i - 1] != "*" &&
+      charArray[i - 1] != "/" &&
       charArray[i - 1] != "+"
     ) {
       charArray.splice(i, 0, "+");
     }
   }
   string = charArray.join("");
-
-  // Find division cases
   return expression(string);
 };
-
-console.log(parse("42/11-26/16-32"));
-console.log(parse("42/11-26/16*3-32"));
