@@ -162,5 +162,13 @@ const parse = (string) => {
     }
   }
   string = charArray.join("");
-  return expression(string);
+  return [`${string}=`, expression(string)];
 };
+
+module.exports.digit = digit;
+module.exports.char = char;
+module.exports.someDigit = someDigit;
+module.exports.num = num;
+module.exports.expression = expression;
+module.exports.factor = factor;
+module.exports.term = term;

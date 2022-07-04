@@ -1,4 +1,4 @@
-// // // Add click event to buttonArray3;
+// // // Add click event to buttonArray3 and its blocker
 
 const buttonArray3 = document.querySelector(".buttons__array-3");
 const blockerForButtonArray3 = document.querySelector(
@@ -15,18 +15,13 @@ blockerForButtonArray3.addEventListener("click", toggleButtonArray3);
 
 // // // Add calculator functionality
 
-// Define a function which accepts a string and evaluates it
-const parseString = (string) => {
-  return "you're beautiful";
-};
-
 // Define a function which accepts the value of the button which has been pressed,
 // and takes appropriate action
+let previousButtonPressWasEquals = false;
 const handleButtonPress = (event) => {
   const value = event.target.value;
   const upperScreen = document.querySelector(".screen__upper");
   const lowerScreen = document.querySelector(".screen__lower");
-
   switch (value) {
     case "DEL":
       lowerScreen.innerText = lowerScreen.innerText.slice(0, -1);
@@ -39,29 +34,36 @@ const handleButtonPress = (event) => {
       lowerScreen.innerText = `${lowerScreen.innerText}*${lowerScreen.innerText}`;
     // no break since we want case "=" to immediately execute after this
     case "=":
+      previousButtonPressWasEquals = true;
       // Put the equals on the screen as normal
-      lowerScreen.innerText += "=";
+      // lowerScreen.innerText += "=";
       // Parse string --> Array
-      let calculationArray = parse(lowerScreen.innerText);
-      // If parsing produced an error, show an error symbol on screen
-      if (!calculationArray) {
-        upperScreen.innerText = lowerScreen.innerText;
-        lowerScreen.innerText = "⚠";
-        break;
+      let result = parse(lowerScreen.innerText);
+      // Display the result and show the input on the top screen
+      if (result[1][1].length > 0) {
+        console.log(`Parser did not understand ${result[1][1]}`);
+        result[1][0] = "⚠";
       }
-      // Show the user how we fixed "1++2" into "1+0+2", for example.
-      lowerScreen.innerText = calculationArray.join("");
-      // Calculate the result
-      let result = calculate(calculationArray);
-      // Display the result and shift the input to the top screen
-      upperScreen.innerText = lowerScreen.innerText;
-      lowerScreen.innerText = result;
+      upperScreen.innerText = result[0];
+      lowerScreen.innerText = result[1][0];
+      addCalculationToHistory(result[0], result[1][0]);
       break;
     default:
+      // If the
+      if (previousButtonPressWasEquals && /\d/.test(value)) {
+        lowerScreen.innerText = "";
+      }
+      previousButtonPressWasEquals = false;
       lowerScreen.innerText += value;
       break;
   }
 };
+
+const addCalculationToHistory = (calculation, result) => {
+  let history = document.querySelector(".buttons__array-3>p");
+  history.innerHTML += `<br>${calculation} ${result}`;
+};
+
 // // // Add click event to buttons in arrays
 const buttons = document.querySelectorAll(
   ".buttons__array-1>button, .buttons__array-2>button, .buttons__array-3>button, .screen__clear"
