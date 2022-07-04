@@ -69,7 +69,6 @@ const factor = (string) => {
     output = expression(output[1]);
     x = output[0];
     output = char(")", output[1]);
-    //console.log(output);
     return [x, output[1]];
   } else {
     return num(string);
@@ -88,6 +87,12 @@ const term = (string) => {
     y = output[0];
     return [+x * +y, output[1]];
   }
+  output = char("/", output[1]);
+  if (output[0]) {
+    output = term(output[1]);
+    y = output[0];
+    return [+x / +y, output[1]];
+  }
   return factor(string);
 };
 
@@ -97,13 +102,10 @@ const expression = (string) => {
   let output;
   output = term(string);
   x = output[0];
-  //console.log(`x is ${x}`);
   output = char("+", output[1]);
   if (output[0]) {
     output = expression(output[1]);
     y = output[0];
-    //console.log(`y is ${y}`);
-    console.log(`performing ${x} plus ${y}`);
     return [+x + +y, output[1]];
   } else {
     return term(string);
@@ -131,4 +133,5 @@ const parse = (string) => {
   return expression(string);
 };
 
-console.log(parse("1+"));
+console.log(parse("42/11-26/16-32"));
+console.log(parse("42/11-26/16*3-32"));
