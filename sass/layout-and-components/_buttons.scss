@@ -75,6 +75,12 @@ button {
     width: 43.7125748%;
     grid-template-columns: 0fr 1fr;
   }
+  > p {
+    grid-column-start: 2;
+    font-weight: bolder;
+    overflow: auto;
+    padding: 30px;
+  }
 }
 
 .buttons__blocker-for-array-3 {
