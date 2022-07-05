@@ -4,6 +4,21 @@
 // My parser additionally understands subtraction and division
 
 /**
+ * The Grammar on which the parsers functions are built:
+ *
+ * digit: any digit 1-9. e.g. "1"
+ * someDigit: Any positive number. e.g. "10.5"
+ * number: Any number. e.g. "-10.5"
+ *
+ * factor = ( expression ) | number
+ * term = factor * term | factor
+ * expression = term + expression | term
+ *
+ * The input is put into the expression function,
+ * and then the function calls cascade down
+ */
+
+/**
  * Try to parse a single digit, or decimal point, from the front of a string
  * @param {string} string
  * @return {array} The digit, the rest of the string.
