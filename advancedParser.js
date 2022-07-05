@@ -1,4 +1,7 @@
-// This parser recoginizes +, -, *, /, negative numbers, brackets.
+// This is a combinator parser inspired by
+// https://youtu.be/dDtZLm7HIJs
+// Which describes building a parser for addition, multiplication, and negative numbers in Haskell
+// My parser additionally has the ability to do subtraction and division
 
 /**
  * Try to parse a single digit, or decimal point, from the front of a string
@@ -101,16 +104,19 @@ const term = (string) => {
   x = output[0];
   output = char("/", output[1]);
   if (output[0]) {
+    // If parsing a / was successful
     output = term(output[1]);
     y = output[0];
     return [+x / +y, output[1]];
   }
   output = char("*", output[1]);
   if (output[0]) {
+    // If parsing a * was successful
     output = term(output[1]);
     y = output[0];
     return [+x * +y, output[1]];
   }
+  // If neither "*" or "/" has been found, look for a factor instead
   return factor(string);
 };
 
@@ -129,10 +135,12 @@ const expression = (string) => {
   x = output[0];
   output = char("+", output[1]);
   if (output[0]) {
+    // If parsing a + was successful
     output = expression(output[1]);
     y = output[0];
     return [+x + +y, output[1]];
   } else {
+    // Otherwise look for a term
     return term(string);
   }
 };
@@ -143,7 +151,7 @@ const expression = (string) => {
  * 2. The parser cannot subtract, so subtraction operations need to
  *  be made addition of a negative number
  * @param {string} string  A string to be parsed
- * @returns {string} A formatted string
+ * @returns {array} = [{string}, {array}] The formated calculation, the result from parsing the calculation
  */
 const parse = (string) => {
   // Remove spaces
@@ -165,10 +173,10 @@ const parse = (string) => {
   return [`${string}=`, expression(string)];
 };
 
-module.exports.digit = digit;
-module.exports.char = char;
-module.exports.someDigit = someDigit;
-module.exports.num = num;
-module.exports.expression = expression;
-module.exports.factor = factor;
-module.exports.term = term;
+//module.exports.digit = digit;
+//module.exports.char = char;
+//module.exports.someDigit = someDigit;
+//module.exports.num = num;
+//module.exports.expression = expression;
+//module.exports.factor = factor;
+//module.exports.term = term;

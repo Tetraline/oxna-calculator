@@ -16,6 +16,12 @@
   width: 100%;
   display: grid;
   grid-template-columns: 73fr 21fr 6fr;
+  position: relative;
+}
+@media only screen and (min-width: 1400px) {
+  .buttons {
+    grid-template-columns: 73fr 21fr 73fr;
+  }
 }
 
 button {
@@ -33,8 +39,12 @@ button {
 }
 .buttons__array-1 > button {
   color: #ffffff;
-  font-size: 55px;
-  font-size: 3.4375rem;
+  font-size: 9vw;
+}
+@media only screen and (min-width: 768px) {
+  .buttons__array-1 > button {
+    font-size: 69px;
+  }
 }
 
 .buttons__array-2 {
@@ -55,9 +65,9 @@ button {
   height: 100%;
   width: 73%;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 13fr 67fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  position: fixed;
+  position: absolute;
   right: -67%;
   transition: 0.8s;
   z-index: 2;
@@ -67,23 +77,43 @@ button {
   color: #000000;
   font-size: 55px;
   font-size: 3.4375rem;
+  grid-column-start: 2;
+}
+@media only screen and (min-width: 1400px) {
+  .buttons__array-3 {
+    right: 0%;
+    width: 43.7125748%;
+    grid-template-columns: 0fr 1fr;
+  }
+}
+.buttons__array-3 > p {
+  grid-column-start: 2;
+  font-weight: bolder;
+  overflow: auto;
+  padding: 30px;
 }
 
 .buttons__blocker-for-array-3 {
   position: fixed;
-  right: 100%;
+  right: -100%;
   width: 100%;
   height: 100%;
   background-color: black;
   opacity: 0.9;
   z-index: 1;
   transition: 0.8s;
+  position: absolute;
 }
 .buttons__blocker-for-array-3 > p {
   color: white;
   font-size: 2rem;
   margin-top: 19%;
   margin-left: 4%;
+}
+@media only screen and (min-width: 1400px) {
+  .buttons__blocker-for-array-3 {
+    display: none;
+  }
 }
 
 .buttons__array-3--open,
@@ -97,4 +127,39 @@ button {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 32fr 68fr;
+}
+@media only screen and (min-width: 768px) {
+  .calculator-wrapper {
+    width: 768px;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .calculator-wrapper {
+    width: 1400px;
+  }
+}
+
+.screen {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4fr 6fr;
+  align-items: center;
+  margin: 20px;
+  font-size: 9vw;
+  position: relative;
+}
+@media only screen and (min-width: 768px) {
+  .screen {
+    font-size: 69px;
+  }
+}
+
+.screen__clear {
+  position: absolute;
+  top: 30px;
+  right: 0px;
+  width: 100px;
+  height: 100px;
+  font-size: 1.2rem;
+  color: black;
 }
