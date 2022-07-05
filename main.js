@@ -35,8 +35,6 @@ const handleButtonPress = (event) => {
     // no break since we want case "=" to immediately execute after this
     case "=":
       previousButtonPressWasEquals = true;
-      // Put the equals on the screen as normal
-      // lowerScreen.innerText += "=";
       // Parse string --> Array
       let result = parse(lowerScreen.innerText);
       // Display the result and show the input on the top screen
@@ -49,7 +47,6 @@ const handleButtonPress = (event) => {
       addCalculationToHistory(result[0], result[1][0]);
       break;
     default:
-      // If the
       if (previousButtonPressWasEquals && /\d/.test(value)) {
         lowerScreen.innerText = "";
       }

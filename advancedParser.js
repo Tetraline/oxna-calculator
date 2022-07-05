@@ -1,7 +1,7 @@
 // This is a combinator parser inspired by
 // https://youtu.be/dDtZLm7HIJs
-// Which describes building a parser for addition, multiplication, and negative numbers in Haskell
-// My parser additionally has the ability to do subtraction and division
+// which describes an approach to building a parser for addition, multiplication, and negative numbers.
+// My parser additionally understands subtraction and division
 
 /**
  * Try to parse a single digit, or decimal point, from the front of a string
