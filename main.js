@@ -38,9 +38,13 @@ const handleButtonPress = (event) => {
       // Parse string --> Array
       let result = parse(lowerScreen.innerText);
       // Display the result and show the input on the top screen
-      if (result[1][1].length > 0) {
-        console.log(`Parser did not understand ${result[1][1]}`);
-        result[1][0] = "⚠";
+      if (result[1][1]) {
+        if (result[1][1] == "dec") {
+          result[1][0] = "too many decimal points";
+        } else {
+          console.error(`Parser did not understand ${result[1][1]}`);
+          result[1][0] = "⚠";
+        }
       }
       upperScreen.innerText = result[0];
       lowerScreen.innerText = result[1][0];

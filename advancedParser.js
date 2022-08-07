@@ -45,6 +45,10 @@ const someDigit = (string) => {
     string = digitParse[1];
     digitParse = digit(string);
   }
+  if (output.split(".").length > 2) {
+    // If there are two decimal points in the number
+    return ["dec", "dec"];
+  }
   return [output, string];
 };
 
