@@ -39,7 +39,7 @@ const digit = (string) => {
  */
 const someDigit = (string) => {
   let output = "";
-  digitParse = digit(string);
+  let digitParse = digit(string);
   while (digitParse[0]) {
     output += digitParse[0];
     string = digitParse[1];
@@ -177,8 +177,8 @@ const parse = (string) => {
   string = string.replace(/\s/g, "");
   // Replace "-" with "+-"
   // (But not "*-" with "*+-")
-  charArray = [...string];
-  for (i = charArray.length; i > 0; i--) {
+  const charArray = [...string];
+  for (let i = charArray.length; i > 0; i--) {
     if (
       charArray[i] == "-" &&
       charArray[i - 1] != "*" &&
@@ -192,10 +192,4 @@ const parse = (string) => {
   return [`${string}=`, expression(string)];
 };
 
-//module.exports.digit = digit;
-//module.exports.char = char;
-//module.exports.someDigit = someDigit;
-//module.exports.num = num;
-//module.exports.expression = expression;
-//module.exports.factor = factor;
-//module.exports.term = term;
+export default parse;

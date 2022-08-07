@@ -1,4 +1,4 @@
-// // // Add click event to buttonArray3 and its blocker
+import parse from "./advancedParser.js";
 
 const buttonArray3 = document.querySelector(".buttons__array-3");
 const blockerForButtonArray3 = document.querySelector(
@@ -12,8 +12,6 @@ const toggleButtonArray3 = () => {
 
 buttonArray3.addEventListener("click", toggleButtonArray3);
 blockerForButtonArray3.addEventListener("click", toggleButtonArray3);
-
-// // // Add calculator functionality
 
 // Define a function which accepts the value of the button which has been pressed,
 // and takes appropriate action
@@ -65,7 +63,6 @@ const addCalculationToHistory = (calculation, result) => {
   history.innerHTML += `<br>${calculation} ${result}`;
 };
 
-// // // Add click event to buttons in arrays
 const buttons = document.querySelectorAll(
   ".buttons__array-1>button, .buttons__array-2>button, .buttons__array-3>button, .screen__clear"
 );
